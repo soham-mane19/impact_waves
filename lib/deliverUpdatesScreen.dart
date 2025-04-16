@@ -15,7 +15,7 @@ class DeliveryUpdatesScreen extends StatelessWidget {
           children: [
             const Text('Delivery Timeline', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             const SizedBox(height: 16),
-            Row(
+            Row( 
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 _TimelineStep(label: 'Placed', isActive: true),
