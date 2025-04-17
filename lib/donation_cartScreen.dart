@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:impact_waves/constants.dart';
 
 class DonationCartScreen extends StatefulWidget {
   const DonationCartScreen({super.key});
@@ -26,9 +27,9 @@ class _DonationCartScreenState extends State<DonationCartScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Selected NGO: Hope NGO', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            const Text('Selected NGO: Hope NGO', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,fontFamily: kFontFamilyMonstreet)),
             const SizedBox(height: 16),
-            const Text('Items', style: TextStyle(fontWeight: FontWeight.bold)),
+            const Text('Items', style: TextStyle(fontWeight: FontWeight.bold,fontFamily: kFontFamilyMonstreet)),
             ...items.map((item) => ListTile(
                   title: Text(item['name'] as String),
                   trailing: Row(
@@ -47,7 +48,7 @@ class _DonationCartScreenState extends State<DonationCartScreen> {
                   ),
                 )),
             const SizedBox(height: 16),
-            const Text('Donation Type', style: TextStyle(fontWeight: FontWeight.bold)),
+            const Text('Donation Type', style: TextStyle(fontWeight: FontWeight.bold,fontFamily: kFontFamilyMonstreet)),
             RadioListTile(
               title: const Text('One-Time Donation'),
               value: 'One-Time',
@@ -81,7 +82,7 @@ class _DonationCartScreenState extends State<DonationCartScreen> {
               ),
             ],
             const SizedBox(height: 16),
-            const Text('Your Impact', style: TextStyle(fontWeight: FontWeight.bold)),
+            const Text('Your Impact', style: TextStyle(fontWeight: FontWeight.bold,fontFamily: kFontFamilyMonstreet)),
             Card(
               child: Padding(
                 padding: const EdgeInsets.all(16),

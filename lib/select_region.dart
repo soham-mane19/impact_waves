@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:impact_waves/constants.dart';
+import 'package:impact_waves/ngo_listing.dart';
 
 class SelectRegionScreen extends StatefulWidget {
   const SelectRegionScreen({super.key});
@@ -46,6 +48,7 @@ class _SelectRegionScreenState extends State<SelectRegionScreen> {
                               fontSize: 24,
                               fontWeight: FontWeight.bold,
                               color: Colors.white,
+                              fontFamily: kFontFamilyMonstreet
                             ),
                           ),
                           Spacer(),
@@ -71,11 +74,12 @@ class _SelectRegionScreenState extends State<SelectRegionScreen> {
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
+                                  fontFamily: kFontFamilyMonstreet
                                 ),
                               ),
                               Text(
                                 'NGO Needs Met',
-                                style: TextStyle(color: Colors.white70),
+                                style: TextStyle(color: Colors.white70,fontFamily: kFontFamilyMonstreet),
                               ),
                             ],
                           ),
@@ -88,11 +92,12 @@ class _SelectRegionScreenState extends State<SelectRegionScreen> {
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
+                                  fontFamily: kFontFamilyMonstreet
                                 ),
                               ),
                               Text(
                                 'Active Donors',
-                                style: TextStyle(color: Colors.white70),
+                                style: TextStyle(color: Colors.white70,fontFamily: kFontFamilyMonstreet),
                               ),
                             ],
                           ),
@@ -105,11 +110,12 @@ class _SelectRegionScreenState extends State<SelectRegionScreen> {
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
+                                  fontFamily: kFontFamilyMonstreet
                                 ),
                               ),
                               Text(
                                 'Items Tracked',
-                                style: TextStyle(color: Colors.white70),
+                                style: TextStyle(color: Colors.white70,),
                               ),
                             ],
                           ),
@@ -141,7 +147,7 @@ class _SelectRegionScreenState extends State<SelectRegionScreen> {
                             ),
                             child: Text(
                               'See Your Impact',
-                              style: TextStyle(fontSize: 18, color: Colors.white),
+                              style: TextStyle(fontSize: 18, color: Colors.white,fontFamily: kFontFamilyMonstreet),
                             ),
                           ),
                         ],
@@ -156,7 +162,7 @@ class _SelectRegionScreenState extends State<SelectRegionScreen> {
                     children: [
                       DropdownButtonFormField<String>(
                         decoration: InputDecoration(
-                         
+                         hintText: 'Select State',
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
                           ),
@@ -171,7 +177,7 @@ class _SelectRegionScreenState extends State<SelectRegionScreen> {
                         items: ['Maharashtra', 'Karnataka', 'Delhi', 'Haryana']
                             .map((state) => DropdownMenuItem(
                                   value: state,
-                                  child: Text(state, style: TextStyle(fontSize: 16)),
+                                  child: Text(state, style: TextStyle(fontSize: 16,fontFamily: kFontFamilyMonstreet)),
                                 ))
                             .toList(),
                         onChanged: (value) => setState(() => selectedState = value),
@@ -182,7 +188,8 @@ class _SelectRegionScreenState extends State<SelectRegionScreen> {
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
-                          color: Color(0xFF9575CD),
+                          color:Colors.white,
+                          fontFamily: kFontFamilyMonstreet
                         ),
                       ),
                       SizedBox(height: 16),
@@ -225,6 +232,7 @@ class _SelectRegionScreenState extends State<SelectRegionScreen> {
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: isSelected ? Colors.white : Color(0xFF26A69A),
+                                        fontFamily: kFontFamilyMonstreet
                                       ),
                                     ),
                                   ],
@@ -248,8 +256,16 @@ class _SelectRegionScreenState extends State<SelectRegionScreen> {
       floatingActionButton:  ElevatedButton(
         onPressed: selectedState != null && selectedCauses.isNotEmpty
             ? () {
-                // Navigate to next screen
-              }
+                Navigator.of(context).push(
+                  
+                  MaterialPageRoute(builder: (context) {
+                  return NgoListingScreen();
+                
+                },
+                )
+                );
+                
+                              }
             : null,
         style: ElevatedButton.styleFrom(
           backgroundColor: Color(0xFF9575CD),
@@ -260,7 +276,7 @@ class _SelectRegionScreenState extends State<SelectRegionScreen> {
         ),
         child: Text(
           'Make an Impact',
-          style: TextStyle(fontSize: 18, color: Colors.white),
+          style: TextStyle(fontSize: 18, color: Colors.white,fontFamily: kFontFamilyMonstreet),
         ),
       ),
     );
@@ -284,12 +300,12 @@ class _SelectRegionScreenState extends State<SelectRegionScreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(icon, size: 30, color: Color(0xFF26A69A)),
+          Icon(icon, size: 30, color:Colors.blue),
           SizedBox(height: 5),
           Text(
             text,
             textAlign: TextAlign.center,
-            style: TextStyle(color: Color(0xFF26A69A)),
+            style: TextStyle(color:Colors.black,fontFamily: kFontFamilyMonstreet),
           ),
         ],
       ),

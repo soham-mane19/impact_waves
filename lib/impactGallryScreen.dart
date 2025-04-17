@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:impact_waves/constants.dart';
 
 class ImpactGalleryScreen extends StatelessWidget {
   const ImpactGalleryScreen({super.key});
@@ -68,6 +69,7 @@ class ImpactGalleryScreen extends StatelessWidget {
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
+                          fontFamily: kFontFamilyMonstreet
                         ),
                       ),
                       SizedBox(height: 10),
@@ -77,6 +79,7 @@ class ImpactGalleryScreen extends StatelessWidget {
                           fontSize: 16,
                           fontStyle: FontStyle.italic,
                           color: Colors.white70,
+                          fontFamily: kFontFamilyMonstreet
                         ),
                       ),
                     ],
@@ -86,7 +89,7 @@ class ImpactGalleryScreen extends StatelessWidget {
                 const SizedBox(height: 30),
                 const Text(
                   '📸 Impact Moments',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xFF6d4c41)),
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xFF6d4c41),fontFamily: kFontFamilyMonstreet),
                 ),
                 const SizedBox(height: 16),
 
@@ -123,7 +126,7 @@ class ImpactGalleryScreen extends StatelessWidget {
                 const SizedBox(height: 32),
                 const Text(
                   '💌 Real Stories of Change',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xFF4e342e)),
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xFF4e342e),fontFamily: kFontFamilyMonstreet),
                 ),
                 const SizedBox(height: 12),
 
@@ -155,12 +158,13 @@ class ImpactGalleryScreen extends StatelessWidget {
                                 fontWeight: FontWeight.bold,
                                 fontSize: 17,
                                 color: Color(0xFF6d4c41),
+                                fontFamily: kFontFamilyMonstreet
                               ),
                             ),
                             const SizedBox(height: 8),
                             Text(
                               story['description']!,
-                              style: const TextStyle(fontSize: 14, color: Colors.black87),
+                              style: const TextStyle(fontSize: 14, color: Colors.black87,fontFamily: kFontFamilyMonstreet),
                             ),
                           ],
                         ),
@@ -175,6 +179,7 @@ class ImpactGalleryScreen extends StatelessWidget {
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                       color: Colors.brown.shade700,
+                      fontFamily: kFontFamilyMonstreet
                     ),
                     textAlign: TextAlign.center,
                   ),

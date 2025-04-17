@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:impact_waves/constants.dart';
 import 'package:impact_waves/ngo_detailScreen.dart';
 
 class NgoListingScreen extends StatelessWidget {
@@ -57,99 +58,186 @@ class NgoListingScreen extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('NGOs Matching Your Cause'),
-        backgroundColor: Colors.teal,
-        foregroundColor: Colors.white,
+        backgroundColor: Colors.grey[100],
+        appBar: AppBar(
+        title: const Text(
+          'Discover NGOs',
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22,fontFamily: kFontFamilyMonstreet),
+        ),
+          leading: GestureDetector(
+          onTap: () {
+            Navigator.of(context).pop();
+          },
+          child: Icon(Icons.arrow_back_ios),
+        ),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        foregroundColor: Colors.black87,
+       
       ),
       body: ListView.builder(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         itemCount: ngos.length,
         itemBuilder: (context, index) {
           final ngo = ngos[index];
-          return Card(
-            elevation: 4,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-            child: InkWell(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => NgoDetailsScreen(ngo: ngo),
+          return GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => NgoDetailsScreen(ngo: ngo),
+                ),
+              );
+            },
+            child: Card(
+              margin: const EdgeInsets.only(bottom: 16),
+              elevation: 3,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16),
+                  gradient: LinearGradient(
+                    colors: [Colors.white, Colors.grey[50]!],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
                   ),
-                );
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(16),
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            ngo['name'] as String,
-                            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    // Image Carousel
+                    ClipRRect(
+                      borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
+                      child: SizedBox(
+                        height: 200,
+                        child: CarouselSlider(
+                          options: CarouselOptions(
+                            height: 200,
+                            autoPlay: true,
+                            enlargeCenterPage: true,
+                            viewportFraction: 1.0,
                           ),
+                          items: (ngo['photos'] as List<String>).map((url) {
+                            return Hero(
+                              tag: 'ngo-image-${ngo['name']}-$url',
+                              child: Image.network(
+                                url,
+                                fit: BoxFit.cover,
+                                width: double.infinity,
+                                loadingBuilder: (context, child, loadingProgress) {
+                                  if (loadingProgress == null) return child;
+                                  return const Center(child: CircularProgressIndicator());
+                                },
+                                errorBuilder: (context, error, stackTrace) {
+                                  return const Icon(Icons.error, color: Colors.red, size: 50);
+                                },
+                              ),
+                            );
+                          }).toList(),
                         ),
-                        if (ngo['verified'] as bool) ...[
-                          const SizedBox(width: 8),
-                          const Icon(Icons.verified, color: Colors.green, size: 20),
-                        ],
-                      ],
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      ngo['mission'] as String,
-                      style: const TextStyle(color: Colors.grey),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    const SizedBox(height: 16),
-                    CarouselSlider(
-                      options: CarouselOptions(
-                        height: 150,
-                        autoPlay: true,
-                        enlargeCenterPage: true,
-                        viewportFraction: 0.9,
                       ),
-                      items: (ngo['photos'] as List<String>).map((url) {
-                        return Hero(
-                          tag: 'ngo-image-${ngo['name']}-$url',
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(8),
-                            child: Image.network(
-                              url,
-                              fit: BoxFit.cover,
-                              loadingBuilder: (context, child, loadingProgress) {
-                                if (loadingProgress == null) return child;
-                                return const Center(child: CircularProgressIndicator());
+                    ),
+                    // NGO Details
+                    Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  ngo['name'] as String,
+                                  style: const TextStyle(
+                                    fontSize: 22,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black87,
+                                    fontFamily: kFontFamilyMonstreet
+                                  ),
+                                ),
+                              ),
+                              if (ngo['verified'] as bool)
+                                Container(
+                                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                                  decoration: BoxDecoration(
+                                    color: Colors.green[100],
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                  child: const Row(
+                                    children: [
+                                      Icon(Icons.verified, color: Colors.green, size: 16),
+                                      SizedBox(width: 4),
+                                      Text(
+                                        'Verified',
+                                        style: TextStyle(color: Colors.green, fontSize: 12,fontFamily: kFontFamilyMonstreet),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                            ],
+                          ),
+                          const SizedBox(height: 8),
+                          Text(
+                            ngo['mission'] as String,
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.grey[600],
+                              height: 1.4,
+                              fontFamily: kFontFamilyMonstreet
+                            ),
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          const SizedBox(height: 16),
+                          // Needs Preview
+                          Row(
+                            children: [
+                              Icon(Icons.volunteer_activism, color: Colors.teal[300], size: 20),
+                              const SizedBox(width: 8),
+                              Expanded(
+                                child: Text(
+                                  'Needs: ${(ngo['needs'] as List).first['item']} (${(ngo['needs'] as List).first['quantity']})',
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.teal[700],
+                                    fontWeight: FontWeight.w600,
+                                    fontFamily: kFontFamilyMonstreet
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 16),
+                          // Action Button
+                          Align(
+                            alignment: Alignment.centerRight,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => NgoDetailsScreen(ngo: ngo),
+                                  ),
+                                );
                               },
-                              errorBuilder: (context, error, stackTrace) {
-                                return const Icon(Icons.error, color: Colors.red);
-                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.teal[400],
+                                foregroundColor: Colors.white,
+                                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                elevation: 0,
+                              ),
+                              child: const Text(
+                                'Explore More',
+                                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600,fontFamily: kFontFamilyMonstreet),
+                              ),
                             ),
                           ),
-                        );
-                      }).toList(),
-                    ),
-                    const SizedBox(height: 16),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => NgoDetailsScreen(ngo: ngo),
-                            ),
-                          );
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.teal,
-                          foregroundColor: Colors.white,
-                        ),
-                        child: const Text('View Details'),
+                        ],
                       ),
                     ),
                   ],

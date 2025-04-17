@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:impact_waves/constants.dart';
 
 class DeliveryUpdatesScreen extends StatelessWidget {
   const DeliveryUpdatesScreen({super.key});
@@ -13,7 +14,7 @@ class DeliveryUpdatesScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Delivery Timeline', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            const Text('Delivery Timeline', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,fontFamily: kFontFamilyMonstreet)),
             const SizedBox(height: 16),
             Row( 
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -24,7 +25,7 @@ class DeliveryUpdatesScreen extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 24),
-            const Text('NGO Acknowledgment', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            const Text('NGO Acknowledgment', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,fontFamily: kFontFamilyMonstreet)),
             Card(
               child: Padding(
                 padding: const EdgeInsets.all(16),
@@ -37,7 +38,7 @@ class DeliveryUpdatesScreen extends StatelessWidget {
                     const SizedBox(height: 8),
                     const Text(
                       'Your donation helped provide books to 30 kids. Thank you!',
-                      style: TextStyle(fontStyle: FontStyle.italic),
+                      style: TextStyle(fontStyle: FontStyle.italic,fontFamily: kFontFamilyMonstreet),
                     ),
                   ],
                 ),
@@ -73,7 +74,7 @@ class _TimelineStep extends StatelessWidget {
           size: 40,
         ),
         const SizedBox(height: 8),
-        Text(label, style: TextStyle(color: isActive ? Colors.teal : Colors.grey)),
+        Text(label, style: TextStyle(color: isActive ? Colors.teal : Colors.grey,fontFamily: kFontFamilyMonstreet),),
       ],
     );
   }
