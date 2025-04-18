@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:impact_waves/confirm_donationScreen.dart';
 
 class DonationCartScreen extends StatefulWidget {
   const DonationCartScreen({super.key});
@@ -37,35 +38,38 @@ class _DonationCartScreenState extends State<DonationCartScreen> {
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Color(0xFF9575CD), Color(0xFFCE93D8), Colors.white],
-            stops: [0.0, 0.6, 1.0],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
-        ),
+       decoration: const BoxDecoration(
+gradient: LinearGradient(
+  colors: [Color(0xFFFFE9E3), Color(0xFFFFFDF9)],
+  begin: Alignment.topLeft,
+  end: Alignment.bottomRight,
+),
+
+
+),
+
         child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Your Impact Cart!',
-                  style: TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
+                const  Text(
+  'Your Impact Cart!',
+  style: TextStyle(
+    fontSize: 28,
+    fontWeight: FontWeight.bold,
+    color: Colors.black87,
+  ),
+),
+
                 const SizedBox(height: 10),
                 const Text(
                   'Selected NGO: Hope NGO',
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
-                    color: Colors.white,
+                    color: Colors.black,
                   ),
                 ),
                 const SizedBox(height: 20),
@@ -172,7 +176,11 @@ class _DonationCartScreenState extends State<DonationCartScreen> {
                 const SizedBox(height: 20),
                 Center(
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                        return ConfirmDonationScreen();
+                      },));
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF26A69A),
                       padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
