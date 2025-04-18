@@ -97,12 +97,12 @@ class _ConfirmDonationScreenState extends State<ConfirmDonationScreen> {
                     ],
                  
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
+                      child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
                       const Text(
-                        'Donation Summary',
-                        style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black87),
+                      'Donation Summary',
+                      style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black87),
                       ),
                       const SizedBox(height: 12),
                       Text('NGO: Hope NGO', style: TextStyle(fontSize: 16, color: Colors.grey.shade800)),
@@ -116,7 +116,8 @@ class _ConfirmDonationScreenState extends State<ConfirmDonationScreen> {
                                 Text('x${item['quantity']}', style: const TextStyle(fontWeight: FontWeight.bold)),
                               ],
                             ),
-                          )),
+                          )
+                          ),
                       const Divider(height: 24),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
