@@ -15,6 +15,11 @@ dependencies:
   intl: ^0.20.2
   lottie: ^3.3.1
   shimmer: ^3.0.0
+  cached_network_image: ^3.4.1
+  flutter_animate: ^4.5.2
+  flutter_staggered_animations: ^1.1.1
+  confetti: ^0.8.0
+  
 
 dev_dependencies:
   flutter_test:
@@ -26,3 +31,14 @@ flutter:
   assets:
    - assets\logo.png
    - assets\ngo.png
+   - assets\don_img.jpg
+   - assets\digg_img.jpg
+   - assets\class_img.jpg
+   
+   - assets\child_img.jpg
+   - assets\done_img.jpg
+   - assets\water_pulse.json
+   - assets\water_drop_1.json
+   - assets\water_drop_2.json
+   - assets\particle.json
+   - assets\wave.json
